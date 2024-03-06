@@ -1,0 +1,32 @@
+﻿<Window x:Class="Fenster.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:bh="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:Fenster.UI.Controls"
+        mc:Ignorable="d"
+        ShowInTaskbar="False"
+        WindowState="Minimized"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <local:NotifyIconWrapper>
+            <bh:Interaction.Triggers>
+                <bh:EventTrigger EventName="OpenSelected">
+                    <bh:InvokeCommandAction Command="{x:Bind ViewModel.OpenCommand}"/>
+                </bh:EventTrigger>
+                <bh:EventTrigger EventName="ExitSelected">
+                    <bh:InvokeCommandAction Command="{x:Bind ViewModel.ExitCommand}"/>
+                </bh:EventTrigger>
+            </bh:Interaction.Triggers>
+        </local:NotifyIconWrapper>
+    </Grid>
+    <bh:Interaction.Triggers>
+        <bh:EventTrigger EventName="Loaded">
+            <bh:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}"/>
+        </bh:EventTrigger>
+        <bh:EventTrigger EventName="Closing">
+            <bh:InvokeCommandAction Command="{x:Bind ViewModel.ClosingCommand}" PassEventArgsToCommand="True"/>
+        </bh:EventTrigger>
+    </bh:Interaction.Triggers>
+</Window>
