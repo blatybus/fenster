@@ -1,7 +1,9 @@
 ﻿using Fenster.UI.Controls;
 using Fenster.UI.ViewModel;
+using Microsoft.Win32;
 using ReactiveUI;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Windows;
 
 namespace Fenster.UI;
@@ -21,6 +23,20 @@ public partial class MainWindow : Window, IViewFor<MainWindowViewModel>
     {
         InitializeComponent();
 
+        this.Loaded += new RoutedEventHandler(Window_Loaded);
+
+        Observable
+            .FromEventPattern<EventHandler, EventArgs>(
+                _ => SystemEvents.DisplaySettingsChanged += _, 
+                _ => SystemEvents.DisplaySettingsChanged -= _)
+            .Select(_ => SystemParameters.WorkArea)
+            .Do(_ =>
+            {
+                Left = _.Right - Width;
+                Top = _.Bottom - Height;
+            })
+            .Subscribe();
+
         ViewModel = new MainWindowViewModel(new Domain.FencesRepository());
 
         FenceCollection = new FenceCollection(this);
@@ -39,6 +55,13 @@ public partial class MainWindow : Window, IViewFor<MainWindowViewModel>
             this.OneWayBind(this.ViewModel, x => x.Fences, x => x.FenceCollection.ItemsSource)
                 .DisposeWith(disposable);
         });
+    }
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
+        this.Left = desktopWorkingArea.Right - this.Width;
+        this.Top = desktopWorkingArea.Bottom - this.Height;
     }
 
     public MainWindowViewModel? ViewModel

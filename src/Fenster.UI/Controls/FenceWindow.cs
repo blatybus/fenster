@@ -1,15 +1,10 @@
 ﻿using Fenster.UI.ViewModel;
 using ReactiveUI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Fenster.UI.Controls
 {
-        //<!--ShowInTaskbar="False" local:WindowExtensions.AlwaysOnBottom="True"-->
+    //<!--ShowInTaskbar="False" local:WindowExtensions.AlwaysOnBottom="True"-->
     public class FenceWindow : Window, IViewFor<FenceWindowViewModel>
     {
         public static readonly DependencyProperty ViewModelProperty =
