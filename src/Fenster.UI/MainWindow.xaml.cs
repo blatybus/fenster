@@ -15,9 +15,7 @@ public partial class MainWindow : Window, IViewFor<MainWindowViewModel>
         DependencyProperty
             .Register(nameof(ViewModel), typeof(MainWindowViewModel), typeof(MainWindow));
 
-    public IList<FenceWindowXaml> FenceWindows { get; private set; }
-
-    public FenceCollection FenceCollection { get; private set; } = new FenceCollection(); 
+    public FenceCollection FenceCollection { get; private set; }
 
     public MainWindow()
     {
@@ -25,7 +23,7 @@ public partial class MainWindow : Window, IViewFor<MainWindowViewModel>
 
         ViewModel = new MainWindowViewModel(new Domain.FencesRepository());
 
-        FenceWindows = new List<FenceWindowXaml>(ViewModel.Fences.Count);
+        FenceCollection = new FenceCollection(this);
 
         this.WhenActivated(disposable =>
         {
@@ -41,16 +39,6 @@ public partial class MainWindow : Window, IViewFor<MainWindowViewModel>
             this.OneWayBind(this.ViewModel, x => x.Fences, x => x.FenceCollection.ItemsSource)
                 .DisposeWith(disposable);
         });
-
-        foreach (var fence in ViewModel.Fences) 
-        {
-            CreateFenceWindow(fence);
-        }
-    }
-
-    private void CreateFenceWindow(FenceWindowViewModel fenceViewModel)
-    {
-        FenceWindows.Add(new FenceWindowXaml(fenceViewModel, this));
     }
 
     public MainWindowViewModel? ViewModel

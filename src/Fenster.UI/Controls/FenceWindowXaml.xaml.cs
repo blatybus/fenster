@@ -14,15 +14,17 @@ namespace Fenster.UI.Controls
             DependencyProperty
                 .Register(nameof(ViewModel), typeof(FenceWindowViewModel), typeof(FenceWindowXaml));
 
-        public FenceWindowXaml(FenceWindowViewModel viewModel, Window owner)
+        public FenceWindowXaml(
+            Window owner, FenceWindowViewModel viewModel)
         {
             InitializeComponent();
             ViewModel = viewModel;
             Name = viewModel.Name;
+            Owner = owner;
+            
             Closing += Window2_Closing;
-            Show();
 
-            //Owner = owner;
+            Show();
         }
 
         public FenceWindowViewModel? ViewModel

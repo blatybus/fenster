@@ -9,6 +9,23 @@
         ShowInTaskbar="False"
         WindowStyle="ToolWindow"
         local:WindowExtensions.AlwaysOnBottom="True">
+    <!--<WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="0" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>-->
+    <Window.Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="shell:WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <shell:WindowChrome CaptionHeight="15"
+                                        CornerRadius="0"
+                                        GlassFrameThickness="0,0,0,-1"
+                                        NonClientFrameEdges="None"
+                                        ResizeBorderThickness="5"
+                                        UseAeroCaptionButtons="true"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Style>
     <Grid>
         <Label>FenceWindow</Label>
         <ListView>
