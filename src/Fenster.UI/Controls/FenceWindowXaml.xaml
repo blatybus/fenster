@@ -12,7 +12,7 @@
     <!--<WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="0" CaptionHeight="0"/>
     </WindowChrome.WindowChrome>-->
-    <Window.Style>
+    <!--<Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="shell:WindowChrome.WindowChrome">
                 <Setter.Value>
@@ -25,7 +25,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </Window.Style>
+    </Window.Style>-->
     <Grid>
         <Label>FenceWindow</Label>
         <ListView>

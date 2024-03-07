@@ -20,7 +20,7 @@ namespace Fenster.UI.Controls
             InitializeComponent();
             ViewModel = viewModel;
             Name = viewModel.Name;
-            Owner = owner;
+            // Owner = owner;
             
             Closing += Window2_Closing;
 

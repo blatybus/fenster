@@ -19,6 +19,8 @@ Main Window
 - three buttons at bottom (add new fence, settings, help)
 
 https://blog.magnusmontin.net/2013/03/16/how-to-create-a-custom-window-in-wpf/
+- appear as background task in processes.
+
 
 Fence Windows
 - do not hide on win-d

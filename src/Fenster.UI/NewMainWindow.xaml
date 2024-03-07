@@ -1,0 +1,43 @@
+﻿<Window x:Class="Fenster.UI.NewMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fenster.UI"
+        xmlns:windows="clr-namespace:System.Windows;assembly=PresentationCore"
+        xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
+        xmlns:tb="clr-namespace:NotifyIconWpf;assembly=NotifyIconWpf"
+        mc:Ignorable="d"
+        ShowInTaskbar="False"
+        WindowState="Minimized"
+        Title="NewMainWindow" Height="450" Width="800">
+
+    <tb:TaskbarIcon x:Name="myNotifyIcon"
+                    Visibility="Visible"
+                    IconSource="/fence-icon-38454-Windows.ico"
+                    MenuActivation="RightClick"
+                    PopupActivation="LeftOrDoubleClick">
+        <tb:TaskbarIcon.TrayPopup>
+            <Popup x:Name="Popup" Placement="Absolute" Width="300"
+                   StaysOpen = "False"
+                    Height="400">
+                <Border
+                     Background="White"
+                     BorderBrush="Orange"
+                     BorderThickness="2"
+                     CornerRadius="4"
+                     >
+                       <Button
+                       Content="Click Me!"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+                   </Border>
+            </Popup>
+        </tb:TaskbarIcon.TrayPopup>
+        <tb:TaskbarIcon.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Close Application" x:Name="ContextMenuItem"/>
+            </ContextMenu>
+        </tb:TaskbarIcon.ContextMenu>
+    </tb:TaskbarIcon>
+</Window>
